@@ -1,0 +1,6 @@
+
+1.0 written by Ralf Rosenberger Samstag, 24. November 2001 - Freitag, 1. März 2002
+
+2.0 written by Ralf Rosenberger Freitag, 6. Februar 2026 - Mittwoch, 11. Februar 2026
+-64 bit support added
+-Optimierungen im Code

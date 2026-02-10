@@ -1,0 +1,47 @@
+;
+;Hier werden die Schlüsselwörter verwaltet.
+;Formatierung:
+;Schlüsselwort - RETURN - TCHAR-Macro
+;Es ist nur ein Zeilenumbruch erlaubt.
+;Ein Kommentar muß in einer Extrazeile stehen und es darf danach kein
+;Zeilenumbruch mehr folgen.
+;Zwischen den Schlüsselwörter darf kein Zeilenumbruch sein !
+;
+main
+_tmain
+WinMain
+_tWinMain
+char
+TCHAR
+LPSTR
+LPTSTR
+LPCSTR
+LPCTSTR
+strlen
+_tcslen
+strcat
+_tcscat
+strchr
+_tcschr
+strrchr
+_tcsrchr
+strstr
+_tcsstr
+strtok
+_tcstok
+sscanf
+_stscanf
+isdigit
+_istdigit
+isxdigit
+_istxdigit
+iscntrl
+_istcntrl
+setlocale
+_tsetlocale
+atoi
+_ttoi
+atol
+_ttol
+getchar
+_gettchar

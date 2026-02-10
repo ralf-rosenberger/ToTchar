@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>Übersicht</title>
+	<meta name="generator" content="LibreOffice 25.8.3.2 (Windows)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2026-02-10T18:03:53.546032800"/>
+	<meta name="Originator" content="Microsoft Word 9"/>
+	<meta name="created" content="00:00:00">
+	<style type="text/css">
+		h1 { font-family: "Arial"; font-size: 16pt; margin-bottom: 0.11cm }
+		p.msonormal { margin-bottom: 0cm }
+	</style>
+</head>
+<body lang="de-DE" dir="ltr"><h1>ToTchar 2002</h1>
+<p class="msonormal" style="margin-bottom: 0.5cm">&nbsp;</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">&quot;ToTchar&quot;
+ist ein kleines Tool, daß Ihnen viel Arbeit abnehmen kann. Sie
+kennen wahrscheinlich die &quot;Generic-Text Routine Mapping&quot;,
+die in der Header-Datei &quot;Tchar.h&quot; definiert sind, kennen.
+Diese Makros erlauben Code zu schreiben, der als Unicode oder als
+Multibyte-Charaker kompiliert werden kann. Sie haben vielleicht noch
+alten Code, den Sie Umstellen wollen. Die Umstellung per Hand zu
+erledigen ist eine mühsame Aufgabe. Der Grund, warum ich dieses
+Programm entwickelt habe, war der daß ich die &quot;alten&quot;
+Schreibweisen wie z.B. &quot;strchr&quot; gewohnt bin und mir die
+&quot;neuen&quot; Formen auch etwas seltsam erschienen. Mit diesem
+Tool kann ich weiterhin so wie ich es gewohnt bin codieren, aber doch
+die Vorzüge der &quot;Generic-Text Routine Mapping-Makros&quot;
+genießen.</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">Es sei hier
+ausdrücklich darauf hingewiesen, daß dieses Programm nicht eine
+Vollständige Umstellung ermöglicht. Sie müssen den Code
+gegebenenfalls noch einmal durchgehen.</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">Es muß bei
+Parameterübergaben von Funktionen immer darauf geachtet werden, ob
+die Anzahl der Bytes oder die Anzahl der Charakters mitgegeben werden
+muß.</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">Hier ein Beispiel:</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">&nbsp;</p>
+<p lang="en-GB" class="msonormal" style="margin-bottom: 0.5cm"><font face="Courier New">GetModuleFileName(NULL,
+szFile, MAX_PATH);</font></p>
+<p class="msonormal" style="margin-bottom: 0.5cm">&nbsp;</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">In diesem Fall wird
+nach der Anzahl der Charakters gefragt und Sie übergeben die Anzahl
+der Charakters mit der Funktion.</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">Wenn aber eine
+Funktion die Anzahl in Bytes benötigt. Wie z.B. 
+</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">&nbsp;</p>
+<p lang="en-GB" class="msonormal" style="margin-bottom: 0.5cm"><font face="Courier New">lpszFile
+= (LPTSTR)HeapAlloc(hHeap,0L,MAX_PATH * sizeof(TCHAR));</font></p>
+<p class="msonormal" style="margin-bottom: 0.5cm">&nbsp;</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">müssen Sie die
+Anzahl der Charakters mal die Größe von TCHAR übergeben. In einer
+nicht-Unicode-Anwendung hat ein Charakter eine Größe von einem
+Byte, in einem Unicode-Programm eine Größe von 32-Bit.</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">Dieser Punkt ist
+sehr wichtig; das kann leider nicht von diesem Programm in diesem
+Umfang geleistet werden.</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">Wenn Sie Text in
+die Zwischenablage kopieren wollen, sollten Sie folgenden Code
+verwenden:</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">&nbsp;</p>
+<p lang="en-GB" class="msonormal" style="margin-bottom: 0.5cm"><font face="Courier New">#ifdef
+UNICODE</font></p>
+<p lang="en-GB" class="msonormal" style="margin-bottom: 0.5cm"><font face="Courier New">SetClipboardData(CF_UNICODETEXT,
+hText);</font></p>
+<p lang="en-GB" class="msonormal" style="margin-bottom: 0.5cm"><font face="Courier New">#else</font></p>
+<p lang="en-GB" class="msonormal" style="margin-bottom: 0.5cm"><font face="Courier New">SetClipboardData(CF_TEXT,
+hText)</font></p>
+<p lang="en-GB" class="msonormal" style="margin-bottom: 0.5cm"><font face="Courier New">#endif
+//UNICODE</font></p>
+<p class="msonormal" style="margin-bottom: 0.5cm">&nbsp;</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">Das wird auch nicht
+von diesem Tool geleistet.</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">&nbsp;</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">Bevor das Programm
+eine Veränderung an dem Quellencode vornimmt, wird von diesem eine
+Backup-Datei erstellt. Ich empfehle folgende Vorgehensweise.</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">Wählen Sie eine
+Datei (oder auch mehrere) aus und führen Sie die Konvertierung aus.
+Vergleichen Sie die Backup- und Originaldatei mit &quot;Windiff&quot;
+(Dieses Tool gehört zum Visual C++-Paket), wenn Sie fehlerhafte
+Umwandlungen oder sonstige Bugs entdecken, stellen Sie die
+ursprüngliche Datei wieder her und schreiben mir, mit einer
+Beschreibung des Bugs.</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">Dieses Programm
+wurde zwar ausgiebig getestet, es kann aber keine Fehlerfreiheit
+vorausgesetzt werden, da es dabei um ein relativ komplexes Programm
+handelt und recht fehleranfällig ist. Sie brauchen jetzt keine Angst
+zu haben, es wird immer eine Backup-Datei angelegt. Sollte dieser
+Vorgang scheitern, wird die Konvertierung abgebrochen, so daß die
+Originaldatei erhalten bleibt.</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">&nbsp;</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">Sie können dieses
+Programm für Freeware-Programme und Programme für den privaten
+Gebrauch benutzen. 
+</p>
+<p class="msonormal" style="margin-bottom: 0.5cm">Written © Ralf
+Rosenberger 2002-2026</p>
+</body>
+</html>
